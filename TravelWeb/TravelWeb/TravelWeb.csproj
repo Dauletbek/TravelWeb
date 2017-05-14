@@ -162,8 +162,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GuidersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HotelsController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TravelPlansController.cs" />
+    <Compile Include="Controllers\TravelsController.cs" />
+    <Compile Include="Controllers\TravelTypesController.cs" />
     <Compile Include="DAL\TravelContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -237,11 +242,34 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Guiders\Create.cshtml" />
+    <Content Include="Views\Guiders\Delete.cshtml" />
+    <Content Include="Views\Guiders\Details.cshtml" />
+    <Content Include="Views\Guiders\Edit.cshtml" />
+    <Content Include="Views\Guiders\Index.cshtml" />
+    <Content Include="Views\Travels\Create.cshtml" />
+    <Content Include="Views\Travels\Delete.cshtml" />
+    <Content Include="Views\Travels\Details.cshtml" />
+    <Content Include="Views\Travels\Edit.cshtml" />
+    <Content Include="Views\Travels\Index.cshtml" />
+    <Content Include="Views\Hotels\Create.cshtml" />
+    <Content Include="Views\Hotels\Delete.cshtml" />
+    <Content Include="Views\Hotels\Details.cshtml" />
+    <Content Include="Views\Hotels\Edit.cshtml" />
+    <Content Include="Views\Hotels\Index.cshtml" />
+    <Content Include="Views\TravelPlans\Create.cshtml" />
+    <Content Include="Views\TravelPlans\Delete.cshtml" />
+    <Content Include="Views\TravelPlans\Details.cshtml" />
+    <Content Include="Views\TravelPlans\Edit.cshtml" />
+    <Content Include="Views\TravelPlans\Index.cshtml" />
+    <Content Include="Views\TravelTypes\Create.cshtml" />
+    <Content Include="Views\TravelTypes\Delete.cshtml" />
+    <Content Include="Views\TravelTypes\Details.cshtml" />
+    <Content Include="Views\TravelTypes\Edit.cshtml" />
+    <Content Include="Views\TravelTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="css\Admin\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,58 @@
+﻿@model TravelWeb.Models.Travel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Travel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.guider.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.guider.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TravelType.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartFrom)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartFrom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
