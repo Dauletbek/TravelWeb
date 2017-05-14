@@ -303,6 +303,11 @@
     <Content Include="Views\Days\Edit.cshtml" />
     <Content Include="Views\Days\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutMain.cshtml" />
+    <Content Include="Views\Home\Travels.cshtml" />
+    <Content Include="Views\Home\TravelDetail.cshtml" />
+    <Content Include="Views\Home\Step1.cshtml" />
+    <Content Include="Views\Home\Step2.cshtml" />
+    <Content Include="Views\Home\Step3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

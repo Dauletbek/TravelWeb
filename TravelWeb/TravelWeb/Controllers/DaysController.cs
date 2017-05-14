@@ -49,7 +49,7 @@ namespace TravelWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "dayID,day,detail,travelPlanID")] Day day)
+        public ActionResult Create(Day day)
         {
             if (ModelState.IsValid)
             {

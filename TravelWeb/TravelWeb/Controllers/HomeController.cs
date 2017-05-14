@@ -26,5 +26,22 @@ namespace TravelWeb.Controllers
 
             return View();
         }
+        public ActionResult Travels() {
+            return View();
+        }
+        public ActionResult TravelDetail() {
+            return View();
+        }
+        public ActionResult Step1() {
+            return View();
+        }
+        public ActionResult Step2()
+        {
+            return View();
+        }
+        public ActionResult Step3()
+        {
+            return View();
+        }
     }
 }
