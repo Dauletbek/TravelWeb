@@ -1,0 +1,39 @@
+﻿@model IEnumerable<TravelWeb.Models.Image>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.travel.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.source)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.travel.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.source)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.imageID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.imageID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.imageID })
+        </td>
+    </tr>
+}
+
+</table>
