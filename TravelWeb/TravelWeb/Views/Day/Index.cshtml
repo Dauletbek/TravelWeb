@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TravelWeb.Models.Day>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.travelPlan.detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.day)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.detail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.travelPlan.detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.day)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.detail)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.dayID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.dayID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.dayID })
+        </td>
+    </tr>
+}
+
+</table>
