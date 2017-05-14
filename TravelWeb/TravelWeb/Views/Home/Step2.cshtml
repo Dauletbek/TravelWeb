@@ -73,7 +73,8 @@
 
                         <div class="row">
                             <div class="full-width">
-                                <input type="submit" class="gradient-button" value="Submit booking" id="next-step" />
+                                @Html.ActionLink("Submit booking", "Step3", "Home", new { @class = "gradient-button" })
+                                @*<input type="submit" class="gradient-button" value="Submit booking" id="next-step" />*@
                             </div>
                         </div>
                     </fieldset>

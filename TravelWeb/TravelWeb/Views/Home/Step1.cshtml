@@ -191,7 +191,8 @@
 
                         <div class="row">
                             <div class="f-item full-width">
-                                <input type="submit" class="gradient-button" value="Proceed to next step" id="next-step" />
+                                @Html.ActionLink("Proceed to next step", "Step2", "Home", new { @class = "gradient-button" })
+                                @*<input type="submit" class="gradient-button" value="Proceed to next step" id="next-step" />*@
                             </div>
                         </div>
                     </fieldset>

@@ -38,7 +38,7 @@
                             <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/img1.jpg")" alt="" /></a></figure>
                             <div class="details">
                                 <h3>Winter beach escapes 30% off</h3>
-                                <a href="#" title="Explore our deals" class="gradient-button">Explore our deals</a>
+                               @Html.ActionLink("Explore our deals", "TravelDetail", "Home",new {@class= "gradient-button" })
                             </div>
                         </article>
                         <!--//column-->
@@ -47,7 +47,7 @@
                             <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/paris.jpg")" alt="" /></a></figure>
                             <div class="details">
                                 <h3>Spend New Year‘s Eve in Paris</h3>
-                                <a href="#" title="More info" class="gradient-button">More info</a>
+                                @Html.ActionLink("More info", "TravelDetail", "Home", new { @class = "gradient-button" })
                             </div>
                         </article>
                         <!--//column-->
@@ -56,7 +56,7 @@
                             <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/img2.jpg")" alt="" /></a></figure>
                             <div class="details">
                                 <h3>Skiing weekends in the Alpes</h3>
-                                <a href="#" title="Explore our deals" class="gradient-button">Explore our deals</a>
+                                @Html.ActionLink("Explore our deals", "TravelDetail", "Home", new { @class = "gradient-button" })
                             </div>
                         </article>
                         <!--//column-->
@@ -65,7 +65,7 @@
                             <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/thailand.jpg")" alt="" /></a></figure>
                             <div class="details">
                                 <h3>Our weekly top offer: Thailand</h3>
-                                <a href="#" title="More info" class="gradient-button">More info</a>
+                                @Html.ActionLink("More info", "TravelDetail", "Home", new { @class = "gradient-button" })
                             </div>
                         </article>
                         <!--//column-->
