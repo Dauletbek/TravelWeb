@@ -12,13 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.travelPlan.detail)
+            @Html.DisplayNameFor(model => model.travelPlan.ID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.day)
+           Өдөр
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.detail)
+            Мэдээлэл
         </th>
         <th></th>
     </tr>
@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.travelPlan.detail)
+            @Html.DisplayFor(modelItem => item.travelPlan.ID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.day)

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Аялал жуулчлал веб сайт</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,16 +17,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "navbar-brand" })
+                
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("TravelType", "Index", "TravelTypes")</li>
-                    <li>@Html.ActionLink("Guider", "Index", "Guiders")</li>
-                    <li>@Html.ActionLink("Travel", "Index", "Travels")</li>
+                    <li>@Html.ActionLink("Аялалууд", "Index", "TravelTypes")</li>
+                    <li>@Html.ActionLink("Аялал", "Index", "Travels")</li>
+                    <li>@Html.ActionLink("Аялал Дэлгэрэнгүй", "Index", "TravelPlans")</li>
+                    <li>@Html.ActionLink("Төлөвлөгөө", "Index", "Days")</li>
+                    <li>@Html.ActionLink("Зочид буудал", "Index", "Hotels")</li>
+                    <li>@Html.ActionLink("Зурагууд", "Index", "Images")</li>
+                    <li>@Html.ActionLink("Хэргэлэгчүүд", "Index", "Users")</li>
+                    <li>@Html.ActionLink("Хөтөчүүд", "Index", "Guiders")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -36,7 +38,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Аялал жуулчлал веб сайт</p>
         </footer>
     </div>
 
