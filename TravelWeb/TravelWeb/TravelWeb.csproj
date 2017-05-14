@@ -195,8 +195,25 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Booking\lightgallery.min.css" />
+    <Content Include="css\Booking\lightslider.min.css" />
+    <Content Include="css\Booking\style.css" />
+    <Content Include="css\Booking\styler.css" />
+    <Content Include="css\Booking\theme-turqoise.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="js\Booking\e808bf9397.js" />
+    <Content Include="js\Booking\infobox.js" />
+    <Content Include="js\Booking\jquery-ui.min.js" />
+    <Content Include="js\Booking\jquery.min.js" />
+    <Content Include="js\Booking\jquery.raty.min.js" />
+    <Content Include="js\Booking\jquery.slimmenu.min.js" />
+    <Content Include="js\Booking\jquery.uniform.min.js" />
+    <Content Include="js\Booking\lightgallery-all.min.js" />
+    <Content Include="js\Booking\lightslider.min.js" />
+    <Content Include="js\Booking\scripts.js" />
+    <Content Include="js\Booking\search.js" />
+    <Content Include="js\Booking\styler.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -289,6 +306,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="images\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
