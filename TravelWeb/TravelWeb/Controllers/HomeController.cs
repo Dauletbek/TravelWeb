@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelWeb.DAL;
 
 namespace TravelWeb.Controllers
 {
     public class HomeController : BaseController
     {
+        private TravelContext db = new TravelContext();
         public ActionResult Index()
         {
             return View();
@@ -27,7 +29,7 @@ namespace TravelWeb.Controllers
             return View();
         }
         public ActionResult Travels() {
-            return View();
+            return View(db.Travels.ToList());
         }
         public ActionResult TravelDetail() {
             return View();

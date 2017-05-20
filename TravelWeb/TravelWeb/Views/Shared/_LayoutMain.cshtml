@@ -75,11 +75,11 @@
                    
                     <li>@Html.ActionLink("Нүүр", "Index", "Home")</li>
                     <li>
-                        <a href="Travels" title="Blog">Аялалууд</a>
+                        <a href="@Url.Action("Travels", "Home")" title="Blog">Аялалууд</a>
                         <ul>
                             @foreach (var item in ViewBag.Submenus)
                             {
-                                <li><a href="~/Home/Travels" title="Single Post">@item.Name.ToString()</a></li>
+                                <li><a href="@Url.Action("Travels", "Home", new { id = item.TravelTypeID })" title="Single Post">@item.Name.ToString()</a></li>
                             }
                         </ul>
                         <ul>

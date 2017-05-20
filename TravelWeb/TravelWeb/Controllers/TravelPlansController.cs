@@ -39,6 +39,7 @@ namespace TravelWeb.Controllers
         // GET: TravelPlans/Create
         public ActionResult Create()
         {
+            ViewBag.travelID = new SelectList(db.Travels, "ID", "Name");
             return View();
         }
 

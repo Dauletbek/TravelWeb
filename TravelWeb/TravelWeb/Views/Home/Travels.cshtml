@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TravelWeb.Models.Travel>
 @{
     ViewBag.Title = "Аялалууд";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -15,6 +15,11 @@
 
                 <div class="deals">
                     <div class="row">
+
+                        @foreach (var item in Model)
+                        {
+                            <p>jaha</p><br/>
+                        }
                         <!--deal-->
                         <article class="one-fourth">
                             <figure><a href="hotel.html" title=""><img src="@Url.Content("~/images/uploads/hotel1.jpg")" alt="" /></a></figure>
@@ -38,6 +43,8 @@
                             </div>
                         </article>
                         <!--//deal-->
+
+
                         <!--deal-->
                         <article class="one-fourth">
                             <figure><a href="hotel.html" title=""><img src="@Url.Content("~/images/uploads/hotel2.jpg")" alt="" /></a></figure>
