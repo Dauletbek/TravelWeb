@@ -12,6 +12,7 @@ namespace TravelWeb.Models
         public string detail { get; set; }
         public int room { get; set; }
         public int maxPerson { get; set; }
+        public double price { get; set; }
         public int TravelID { get; set; }
         public virtual Travel travel { get; set; }
         public virtual ICollection<Order> order { get; set; }

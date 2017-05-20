@@ -274,9 +274,6 @@
 			,enableEventPropagation: false
 		};
 
-		google.maps.event.addListener(marker, "click", function (e) {
-			ib.open(theMap, this);
-		});
 
 		var ib = new InfoBox(myOptions);
 		ib.open(theMap, marker);
@@ -290,6 +287,7 @@
                 item:1,
                 thumbItem:6,
                 slideMargin: 0,
+                adaptiveHeight:true,
                 speed:500,
                 auto:true,
                 loop:true,
