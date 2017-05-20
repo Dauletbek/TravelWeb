@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelWeb.DAL;
 using TravelWeb.Models;
+using System.IO;
 
 namespace TravelWeb.Controllers
 {
@@ -53,6 +54,24 @@ namespace TravelWeb.Controllers
         {
             if (ModelState.IsValid)
             {
+            if (image.File.ContentLength > (2 * 1024 * 1024))
+            {
+                ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                return View();
+            }
+            if (!(image.File.ContentType == "image/jpeg" || image.File.ContentType == "image/gif"))
+            {
+                ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                return View();
+            }
+            else
+            {
+                var fileName = Path.GetFileName(image.File.FileName);
+                var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                image.File.SaveAs(path);
+                var pathName = "~/images/" + Path.GetFileName(image.File.FileName);
+                image.source = pathName;
+            }
                 db.Images.Add(image);
                 db.SaveChanges();
                 return RedirectToAction("Index");
