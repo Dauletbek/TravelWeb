@@ -73,7 +73,7 @@ namespace TravelWeb.Controllers
                 var fileName = Path.GetFileName(image.File.FileName);
                 var path = Path.Combine(Server.MapPath(subPath), fileName);
                 image.File.SaveAs(path);
-                var pathName = subPath + Path.GetFileName(image.File.FileName);
+                var pathName = subPath+"/" + Path.GetFileName(image.File.FileName);
                 image.source = pathName;
             }
                 db.Images.Add(image);

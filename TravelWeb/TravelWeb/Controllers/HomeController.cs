@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
+using TravelWeb.DAL;
+using System.Net;
+using TravelWeb.Models;
 
 namespace TravelWeb.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
+        private TravelContext db = new TravelContext();
         public ActionResult Index()
         {
             return View();
@@ -27,10 +28,22 @@ namespace TravelWeb.Controllers
             return View();
         }
         public ActionResult Travels() {
-            return View();
+            return View(db.Plans.ToList());
         }
-        public ActionResult TravelDetail() {
-            return View();
+
+        public ActionResult TravelDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TravelPlan detail = db.Plans.Find(id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(detail);
         }
         public ActionResult Step1() {
             return View();

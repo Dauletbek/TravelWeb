@@ -13,8 +13,7 @@ namespace TravelWeb.Models
         public DateTime endDate { get; set; }
         public string detail { get; set; }
         public int TravelID { get; set; }
-        public virtual ICollection<Travel> Travel { get; set; }
+        public virtual Travel travel { get; set; }
         public virtual ICollection<Day> Days { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

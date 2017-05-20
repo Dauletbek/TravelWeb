@@ -44,16 +44,10 @@
                         <li><a href="my_account.html" title="Settings">Settings</a></li>
                     </ul>
                     <ul class="lang-nav">
-                        <li class="active"><a href="#" title="English (US)">English (US)</a></li>
-                        <li><a href="#" title="English (UK)">English (UK)</a></li>
-                        <li><a href="#" title="Deutsch">Deutsch</a></li>
-                        <li><a href="#" title="Italiano">Italiano</a></li>
-                        <li><a href="#" title="Русский">Русский</a></li>
+                        <li class="active"><a href="login.html" title="Login">Login</a></li>
                     </ul>
                     <ul class="currency-nav">
-                        <li class="active"><a href="#" title="$US Dollar">$US Dollar</a></li>
-                        <li><a href="#" title="€ Euro">€ Euro</a></li>
-                        <li><a href="#" title="£ Pound">£ Pound</a></li>
+                        <li class="active"><a href="my_account.html" title="Settings">Settings</a></li>
                     </ul>
                 </nav>
             </div>
@@ -81,10 +75,12 @@
                    
                     <li>@Html.ActionLink("Нүүр", "Index", "Home")</li>
                     <li>
-                        <a href="Travels" title="Blog">Аялалууд</a>
+                        <a href="@Url.Action("Travels", "Home")" title="Blog">Аялалууд</a>
                         <ul>
-                            <li><a href="~/Home/Travels" title="Single Post">Спортан аялал</a>
-                            <li><a href="~/Home/Travels" title="Single Post">Явган аялал</a>
+                            @foreach (var item in ViewBag.Submenus)
+                            {
+                                <li><a href="@Url.Action("Travels", "Home", new { id = item.TravelTypeID })" title="Single Post">@item.Name.ToString()</a></li>
+                            }
                         </ul>
                         <ul>
                            
@@ -278,9 +274,6 @@
 			,enableEventPropagation: false
 		};
 
-		google.maps.event.addListener(marker, "click", function (e) {
-			ib.open(theMap, this);
-		});
 
 		var ib = new InfoBox(myOptions);
 		ib.open(theMap, marker);
@@ -294,6 +287,7 @@
                 item:1,
                 thumbItem:6,
                 slideMargin: 0,
+                adaptiveHeight:true,
                 speed:500,
                 auto:true,
                 loop:true,

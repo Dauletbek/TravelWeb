@@ -330,7 +330,7 @@ aside .widget h5			{font:700 14px 'Open Sans', Helvetica, Arial, sans-serif;padd
 .noslider .header {margin:0 0 20px !important;}
 .noslider .main-search {top:0;position:relative;margin:20px 0 0;}
 
-.slider {margin:-20px 0 20px;height:760px;overflow:hidden;display:inline-block;width:100%;}
+.slider {margin:-20px 0 20px;height:500px;overflow:hidden;display:inline-block;width:100%;}
 
 .logo {float:left;display:block;padding:15px 0;}
 .logo img {height:50px;}
@@ -1140,4 +1140,9 @@ section.error 		{text-align:center;}
 
 @media screen and (max-width: 380px) {
 .get_inspired li {height:220px;}
+}
+
+
+.lSAction>a {
+    top: 30% !important;
 }
