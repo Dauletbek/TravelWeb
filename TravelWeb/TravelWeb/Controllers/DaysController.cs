@@ -45,21 +45,19 @@ namespace TravelWeb.Controllers
         }
 
         // POST: Days/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(Day day)
+        public ActionResult Create(Day dayy)
         {
             if (ModelState.IsValid)
             {
-                db.Days.Add(day);
+                db.Days.Add(dayy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.travelPlanID = new SelectList(db.Plans, "ID", "detail", day.travelPlanID);
-            return View(day);
+            ViewBag.travelPlanID = new SelectList(db.Plans, "ID", "detail", dayy.travelPlanID);
+            return View(dayy);
         }
 
         // GET: Days/Edit/5

@@ -50,26 +50,31 @@ namespace TravelWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "imageID,source,TravelID")] Image image)
+        public ActionResult Create(Image image)
         {
             if (ModelState.IsValid)
             {
-            if (image.File.ContentLength > (2 * 1024 * 1024))
-            {
-                ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
-                return View();
-            }
-            if (!(image.File.ContentType == "image/jpeg" || image.File.ContentType == "image/gif"))
+                if (image.File.ContentLength > (2 * 1024 * 1024))
+                {
+                    ModelState.AddModelError("CustomError", "File size must be less than 2 MB");
+                    RedirectToAction("Index");
+                }
+            if (!(image.File.ContentType == "image/jpeg" || image.File.ContentType == "image/gif"||image.File.ContentType=="image/png"))
             {
                 ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
-                return View();
+                RedirectToAction("Index");
             }
             else
             {
+                string subPath = "~/UserImages";
+                bool exists = System.IO.Directory.Exists(Server.MapPath(subPath));
+                if (!exists)
+                    System.IO.Directory.CreateDirectory(Server.MapPath(subPath));
+
                 var fileName = Path.GetFileName(image.File.FileName);
-                var path = Path.Combine(Server.MapPath("~/images/"), fileName);
+                var path = Path.Combine(Server.MapPath(subPath), fileName);
                 image.File.SaveAs(path);
-                var pathName = "~/images/" + Path.GetFileName(image.File.FileName);
+                var pathName = subPath + Path.GetFileName(image.File.FileName);
                 image.source = pathName;
             }
                 db.Images.Add(image);
@@ -137,6 +142,11 @@ namespace TravelWeb.Controllers
             Image image = db.Images.Find(id);
             db.Images.Remove(image);
             db.SaveChanges();
+            string fullPath = Request.MapPath(image.source);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             return RedirectToAction("Index");
         }
 

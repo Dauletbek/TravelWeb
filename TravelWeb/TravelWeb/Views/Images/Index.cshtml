@@ -27,7 +27,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.source)
-           
+           <img class="img-responsive" style="height:50%" src="@Url.Content(item.source)">
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.imageID }) |
