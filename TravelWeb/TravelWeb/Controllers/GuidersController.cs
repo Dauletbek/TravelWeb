@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelWeb.DAL;
 using TravelWeb.Models;
+using System.IO;
 
 namespace TravelWeb.Controllers
 {
@@ -42,20 +43,35 @@ namespace TravelWeb.Controllers
             return View();
         }
 
-        // POST: Guiders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,firstName,lastName,workedYear,img")] Guider guider)
+        public ActionResult Create(Guider guider)
         {
             if (ModelState.IsValid)
             {
-                db.Guides.Add(guider);
-                db.SaveChanges();
+                if (!(guider.File.ContentType == "image/jpeg" || guider.File.ContentType == "image/gif" || guider.File.ContentType == "image/png"))
+                {
+                    ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                    RedirectToAction("Index");
+                }
+                else
+                {
+                    string subPath = "~/UserImages";
+                    bool exists = Directory.Exists(Server.MapPath(subPath));
+                    if (!exists)
+                        Directory.CreateDirectory(Server.MapPath(subPath));
+
+                    var fileName = Path.GetFileName(guider.File.FileName);
+                    var path = Path.Combine(Server.MapPath(subPath), fileName);
+                    guider.File.SaveAs(path);
+                    var pathName = subPath + "/" + Path.GetFileName(guider.File.FileName);
+                    guider.img = pathName;
+                    db.Guides.Add(guider);
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
-
             return View(guider);
         }
 
@@ -73,10 +89,7 @@ namespace TravelWeb.Controllers
             }
             return View(guider);
         }
-
-        // POST: Guiders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,firstName,lastName,workedYear,img")] Guider guider)

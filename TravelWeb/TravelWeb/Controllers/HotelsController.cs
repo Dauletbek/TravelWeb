@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using TravelWeb.DAL;
 using TravelWeb.Models;
+using System.IO;
 
 namespace TravelWeb.Controllers
 {
@@ -49,12 +50,31 @@ namespace TravelWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "hotelID,name,detail,room,maxPerson,TravelID")] Hotel hotel)
+        public ActionResult Create(Hotel hotel)
         {
             if (ModelState.IsValid)
             {
-                db.Hotels.Add(hotel);
-                db.SaveChanges();
+            if (!(hotel.File.ContentType == "image/jpeg" || hotel.File.ContentType == "image/gif" || hotel.File.ContentType == "image/png"))
+            {
+                ModelState.AddModelError("CustomError", "File type allowed : jpeg and gif");
+                RedirectToAction("Index");
+            }
+            else
+            {
+                string subPath = "~/UserImages";
+                bool exists = Directory.Exists(Server.MapPath(subPath));
+                if (!exists)
+                    Directory.CreateDirectory(Server.MapPath(subPath));
+
+                var fileName = Path.GetFileName(hotel.File.FileName);
+                var path = Path.Combine(Server.MapPath(subPath), fileName);
+                hotel.File.SaveAs(path);
+                var pathName = subPath + "/" + Path.GetFileName(hotel.File.FileName);
+                hotel.imagesrc = pathName;
+                    db.Hotels.Add(hotel);
+                    db.SaveChanges();
+                }
+                
                 return RedirectToAction("Index");
             }
 

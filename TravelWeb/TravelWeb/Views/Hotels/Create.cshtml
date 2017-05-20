@@ -7,7 +7,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Hotels", FormMethod.Post, new { enctype = "multipart/form-data" })) 
 {
     @Html.AntiForgeryToken()
     
@@ -52,6 +52,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.maxPerson)
                 @Html.ValidationMessageFor(model => model.maxPerson)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.imagesrc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.File, new { @type = "file" })
+                @Html.ValidationMessageFor(model => model.File)
             </div>
         </div>
 
