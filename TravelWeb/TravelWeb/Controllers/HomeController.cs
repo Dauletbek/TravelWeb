@@ -115,14 +115,23 @@ namespace TravelWeb.Controllers
                 User user = db.Users.Where(o => o.email == HttpContext.User.Identity.Name).ToList()[0];
                 bigModel.User = user;
             }
-            ViewBag.roleID = new SelectList(db.Roles, "ID", "name");
             return View(bigModel);
         }
         [HttpPost]
         public ActionResult Step1(BigViewModel model) {
             if (model.User.userID == 0) {
+                Role role = db.Roles.ToList()[0];
+                model.User.roleID = role.ID;
+                FormsAuthentication.SignOut();
                 db.Users.Add(model.User);
                 db.SaveChanges();
+                //Шинээр бүртгүүлсэн хэрэглэгчийг системд нэвтрүүлж байна
+                FormsAuthentication.SetAuthCookie(model.User.email, false);
+
+                var authTicket = new FormsAuthenticationTicket(1, model.User.email, DateTime.Now, DateTime.Now.AddMinutes(20), false, model.User.role.name);
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                HttpContext.Response.Cookies.Add(authCookie);
             }
             return RedirectToAction("Step2", new { id=model.Hotel.hotelID});
         }
