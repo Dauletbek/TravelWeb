@@ -6,6 +6,7 @@ using TravelWeb.Models;
 using System.Web.Security;
 using System;
 using System.Web;
+using System.Data.Entity;
 
 namespace TravelWeb.Controllers
 {
@@ -40,11 +41,8 @@ namespace TravelWeb.Controllers
             string travellID = Request.Form["travelId"];
             comment.createdDate = DateTime.Now;
             comment.detail = commentMessage;
-            //Travel tra= db.Travels.Find(travellID);
-            //comment.travel = tra;
             comment.TravelID = Convert.ToInt32(travellID);
             User user = db.Users.Where(o => o.email == HttpContext.User.Identity.Name).ToList()[0];
-           //User user=(User) Session["loginstate"];
             comment.user = user;
             comment.userID = user.userID;
             db.Comments.Add(comment);
@@ -101,16 +99,101 @@ namespace TravelWeb.Controllers
 
             return View(detail);
         }
-        public ActionResult Step1() {
-            return View();
+        public ActionResult Step1(int? id) {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Hotel hotel = db.Hotels.Find(id);
+            if (hotel == null)
+            {
+                return HttpNotFound();
+            }
+            BigViewModel bigModel = new BigViewModel();
+            bigModel.Hotel = hotel;
+            if (Request.IsAuthenticated) {
+                User user = db.Users.Where(o => o.email == HttpContext.User.Identity.Name).ToList()[0];
+                bigModel.User = user;
+            }
+            ViewBag.roleID = new SelectList(db.Roles, "ID", "name");
+            return View(bigModel);
         }
-        public ActionResult Step2()
-        {
-            return View();
+        [HttpPost]
+        public ActionResult Step1(BigViewModel model) {
+            if (model.User.userID == 0) {
+                db.Users.Add(model.User);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Step2", new { id=model.Hotel.hotelID});
         }
-        public ActionResult Step3()
+        public ActionResult Step2(int? id)
         {
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Hotel hotel = db.Hotels.Find(id);
+            if (hotel == null)
+            {
+                return HttpNotFound();
+            }
+            return View(hotel);
+        }
+        [HttpPost]
+        public ActionResult Step2(Hotel model)
+        {
+            string paidMoney = Request.Form["money"];
+            Hotel hotel = db.Hotels.Find(model.hotelID);
+            //Save to Order
+            Order order = new Order();
+            order.totalPrice = hotel.price + hotel.travel.travelPlan.First().price;
+            if (Request.IsAuthenticated)
+            {
+                User user = db.Users.Where(o => o.email == HttpContext.User.Identity.Name).ToList()[0];
+                order.userID = user.userID;
+            }
+            order.hotelID = model.hotelID;
+            db.Orders.Add(order);
+            db.SaveChanges();
+            //Order save completed
+
+            //Save to Payment
+            Payment payment = new Payment();
+            payment.balance = order.totalPrice - Convert.ToInt32(paidMoney);
+            payment.totalPaid += Convert.ToInt32(paidMoney);
+            payment.orderID = order.orderID;
+            db.Payments.Add(payment);
+            db.SaveChanges();
+            //Save to payment completed
+
+            //Save to PaymentHistory
+            PaymentHistory paymentHistory = new PaymentHistory();
+            paymentHistory.paidPrice = Convert.ToInt32(paidMoney);
+            paymentHistory.paidType = PaidType.ONLINE;
+            paymentHistory.date = DateTime.Now;
+            paymentHistory.paymentID = payment.paymentID;
+            db.PaymentHistory.Add(paymentHistory);
+            db.SaveChanges();
+            //Save to payment completed
+
+            return RedirectToAction("Step3", new { id = model.hotelID, orderID=order.orderID });
+        }
+        public ActionResult Step3(int? id,int orderID)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Hotel hotel = db.Hotels.Find(id);
+            Order order = db.Orders.Find(orderID);
+            if (hotel == null)
+            {
+                return HttpNotFound();
+            }
+            BigOrderHotelModel model = new BigOrderHotelModel();
+            model.Order = order;
+            model.Hotel = hotel;
+            return View(model);
         }
     }
 }

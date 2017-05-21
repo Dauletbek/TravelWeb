@@ -178,6 +178,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BigOrderHotelModel.cs" />
+    <Compile Include="Models\BigViewModel.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Guider.cs" />
     <Compile Include="Models\Hotel.cs" />

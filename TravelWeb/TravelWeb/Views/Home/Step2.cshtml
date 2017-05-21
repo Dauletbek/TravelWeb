@@ -1,84 +1,67 @@
-﻿
+﻿@model TravelWeb.Models.Hotel
 @{
     ViewBag.Title = "Step2";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    double total = Model.price + Model.travel.travelPlan.First().price;
 }
 
 <!--main-->
 <main class="main">
     <div class="wrap">
-        <!--breadcrumbs-->
-        <nav class="breadcrumbs">
-            <!--crumbs-->
-            <ul>
-                <li><a href="#" title="Home">Home</a></li>
-                <li><a href="#" title="Hotels">Hotels</a></li>
-                <li><a href="#" title="United Kingdom">United Kingdom</a></li>
-                <li><a href="#" title="London">London</a></li>
-                <li>Best ipsum hotel</li>
-            </ul>
-            <!--//crumbs-->
-            <!--top right navigation-->
-            <ul class="top-right-nav">
-                <li><a href="#" title="Back to results">Back to results</a></li>
-                <li><a href="#" title="Change search">Change search</a></li>
-            </ul>
-            <!--//top right navigation-->
-        </nav>
-        <!--//breadcrumbs-->
 
         <div class="row">
             <!--three-fourth content-->
             <div class="three-fourth">
-                <form id="booking" method="post" action="http://www.themeenergy.com/themes/html/book-your-travel/booking-step3.html" class="static-content booking">
+@using (Html.BeginForm("Step2", "Home", FormMethod.Post))
+{
+    @Html.TextBoxFor(o => o.hotelID, new { @type = "hidden" })
                     <fieldset>
-                        <h2><span>02 </span>Payment</h2>
+                        <h2><span>02 </span>Төлбөр төлөлт</h2>
                         <div class="row">
                             <div class="f-item one-half">
-                                <label>Card type</label>
+                                <label>Картын төрөл</label>
                                 <select>
-                                    <option selected>Select card type</option>
+                                    <option selected>Картын төрлийг сонгоно уу</option>
                                     <option>Mastercard</option>
                                     <option>Visa</option>
-                                    <option>American Express</option>
+                                    <option>Debit card</option>
                                 </select>
                             </div>
                             <div class="f-item one-half">
-                                <label for="card_number">Card number</label>
+                                <label for="card_number">Картын дугаар</label>
                                 <input type="number" id="card_number" name="card_number" />
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="f-item one-third">
-                                <label for="card_holder">Name on card</label>
+                            <div class="f-item one-half">
+                                <label for="card_number">Хүчинтэй хугацаа</label>
+                                <input type="date" id="card_number" name="card_number" />
+                            </div>
+                            <div class="f-item one-half">
+                                <label>Картан дахь нэр</label>
                                 <input type="text" id="card_holder" name="card_holder" />
                             </div>
-                            <div class="f-item one-third datepicker">
-                                <label for="expiration_date">Expiration Date </label>
-                                <div class="datepicker-wrap"><input type="text" id="expiration_date" name="expiration_date" /></div>
-                            </div>
-                            <div class="f-item one-third">
-                                <label for="cv2_number">CV2 Number</label>
-                                <input type="number" id="cv2_number" name="cv2_number" />
+                            <div class="f-item one-half">
+                                <label>Төлөх төлбөрийн дүн бичнэ үү</label>
+                                <input type="text" id="money" name="money" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="f-item full-width checkbox">
                                 <input type="checkbox" name="check" id="check" value="ch1" />
-                                <label>Yes, I have read and I agree to the <a href="#">booking conditions</a>.</label>
+                                <label>Төлбөр төлөлтийн нөхцөлийг зөвшөөрч байна.</label>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="full-width">
-                                @Html.ActionLink("Submit booking", "Step3", "Home", new { @class = "gradient-button" })
-                                @*<input type="submit" class="gradient-button" value="Submit booking" id="next-step" />*@
+                                <input type="submit" class="gradient-button" value="Төлбөр төлөлт хийх" id="next-step" />
                             </div>
                         </div>
                     </fieldset>
-                </form>
+}
             </div>
             <!--//three-fourth content-->
             <!--right sidebar-->
@@ -86,42 +69,36 @@
                 <!--Booking details-->
                 <article class="hotel-details booking-details">
                     <h1>
-                        Best ipsum hotel
-                        <span class="stars">
-                            <i class="material-icons">&#xE838;</i>
-                            <i class="material-icons">&#xE838;</i>
-                            <i class="material-icons">&#xE838;</i>
-                        </span>
+                        @Model.travel.Name
                     </h1>
-                    <span class="address">Marylebone, London</span>
-                    <span class="rating"> 8 /10</span>
+                    <span class="address">@Model.travel.StartFrom->@Model.travel.EndTo</span>
+                    <dl>
+                        <dt>Зочид буудал</dt>
+                        <dd>@Model.name</dd>
+                        <dt>Эхлэх</dt>
+                        <dd>@Model.travel.travelPlan.First().startDate.ToString("yyyy-MM-dd")</dd>
+                        <dt>Дуусах</dt>
+                        <dd>@Model.travel.travelPlan.First().endDate.ToString("yyyy-MM-dd")</dd>
+                    </dl>
                     <dl class="booking-info">
-                        <dt>Rooms</dt>
-                        <dd>Standard twin room</dd>
-                        <dt>Room Description</dt>
-                        <dd>Room only</dd>
-                        <dt>Check-in Date</dt>
-                        <dd>14-11-12</dd>
-                        <dt>Check-out Date</dt>
-                        <dd>15-11-12</dd>
-                        <dt>Room(s)</dt>
-                        <dd>1 night, 1 room, max. 2 people. </dd>
+                        <dt>Зочид буудлын үнэ</dt>
+                        <dd>@Model.price ₮</dd>
+                        <dt>Аялалын үнэ</dt>
+                        <dd>@Model.travel.travelPlan.First().price ₮</dd>
                     </dl>
                     <div class="price">
-                        <p class="total">Total Price:  $ 55,00</p>
-                        <p>VAT (20%) included</p>
+                        <p class="total">Нийт үнэ: @total ₮</p>
                     </div>
                 </article>
                 <!--//Booking details-->
                 <!--Need Help Booking?-->
                 <article class="widget">
-                    <h4>Need Help Booking?</h4>
-                    <p>Call our customer services team on the number below to speak to one of our advisors who will help you with all of your holiday needs.</p>
-                    <p class="number">1- 555 - 555 - 555</p>
+                    <h4>Тусламж хэрэгтэй юу?</h4>
+                    <p>Бидний тусламжийн хэсэгт холбогдоно уу. Манай тусламжийн баг танд туслахад бэлэн байна</p>
+                    <p class="number">+976-9572-4777</p>
                 </article>
                 <!--//Need Help Booking?-->
             </aside>
-            <!--//right sidebar-->
         </div>
         <!--//main content-->
     </div>
