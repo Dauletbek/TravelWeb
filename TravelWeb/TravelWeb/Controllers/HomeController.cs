@@ -36,8 +36,8 @@ namespace TravelWeb.Controllers
             Comment comment = new Comment();
 
             string commentMessage = Request.Form["comment"];
-            string travelPlanID = Request.Form["travelId"]; 
-                string travellID = Request.Form["travelPlanId"];
+            string travelPlanID = Request.Form["travelPlanId"];
+            string travellID = Request.Form["travelId"];
             comment.createdDate = DateTime.Now;
             comment.detail = commentMessage;
             //Travel tra= db.Travels.Find(travellID);
