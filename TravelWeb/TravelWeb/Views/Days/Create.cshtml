@@ -2,15 +2,15 @@
 @{
     ViewBag.Title = "Create";
 }
-<h2>Create</h2>
+<h2>Бүртгэх</h2>
 @using (Html.BeginForm())
 { 
     <div class="form-horizontal">
-        <h4>Day</h4>
+        <h4>Өдөрүүд</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.day, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Хэддэх өдөр</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.day)
                 @Html.ValidationMessageFor(model => model.day)
@@ -18,7 +18,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Мэдээлэл</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.detail)
                 @Html.ValidationMessageFor(model => model.detail)
@@ -26,7 +26,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.travelPlanID, "travelPlanID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Хэдэн өдөр болох</label>
             <div class="col-md-10">
                 @Html.DropDownList("travelPlanID", String.Empty)
                 @Html.ValidationMessageFor(model => model.travelPlanID)
@@ -42,7 +42,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Буцах", "Index")
 </div>
 
 @section Scripts {

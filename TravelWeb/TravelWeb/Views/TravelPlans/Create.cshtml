@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Бүртгэх</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +12,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TravelPlan</h4>
+        <h4>Аялал дэлгэрэнгүй</h4>
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Үнэ</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.price)
                 @Html.ValidationMessageFor(model => model.price)
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.startDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Эхлэх өдөр</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.startDate, new { @type = "date" })
                 @Html.ValidationMessageFor(model => model.startDate)
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.endDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Дуусах өдөр</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.endDate, new { @type = "date" })
                 @Html.ValidationMessageFor(model => model.endDate)
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.detail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Мэдээлэл</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.detail)
                 @Html.ValidationMessageFor(model => model.detail)
@@ -48,7 +48,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TravelID, "travelPlanID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Аялал</label>
             <div class="col-md-10">
                 @Html.DropDownList("travelID", String.Empty)
                 @Html.ValidationMessageFor(model => model.TravelID)
@@ -64,7 +64,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Буцах", "Index")
 </div>
 
 @section Scripts {

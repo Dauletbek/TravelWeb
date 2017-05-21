@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            Нэвтрэх нэр
+            Зэрглэл
         </th>
         <th>
             Хэрэглэгчийн нэр
@@ -77,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.birthDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.userID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.userID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.userID })
+            @Html.ActionLink("Засах", "Edit", new { id=item.userID }) |
+            @Html.ActionLink("Дэлгэрэнгүй", "Details", new { id=item.userID }) |
+            @Html.ActionLink("Устгах", "Delete", new { id=item.userID })
         </td>
     </tr>
 }

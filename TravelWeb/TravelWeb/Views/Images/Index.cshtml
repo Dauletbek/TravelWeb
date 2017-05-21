@@ -30,9 +30,9 @@
            <img class="img-responsive" style="height:50%" src="@Url.Content(item.source)">
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.imageID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.imageID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.imageID })
+            @Html.ActionLink("Засах", "Edit", new { id=item.imageID }) |
+            @Html.ActionLink("Дэлгэрэнгүй", "Details", new { id=item.imageID }) |
+            @Html.ActionLink("Устгах", "Delete", new { id=item.imageID })
         </td>
     </tr>
 }

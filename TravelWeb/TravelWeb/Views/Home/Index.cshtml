@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<TravelWeb.Models.TravelPlan>
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_LayoutMain.cshtml";
@@ -28,47 +28,39 @@
 
                 <!--latest offers-->
                 <header class="s-title">
-                    <h2>Explore our latest offers</h2>
+                    <h2>Манай Аялалууд </h2>
                 </header>
 
                 <div class="offers">
                     <div class="row">
                         <!--column-->
-                        <article class="one-fourth">
-                            <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/img1.jpg")" alt="" /></a></figure>
-                            <div class="details">
-                                <h3>Winter beach escapes 30% off</h3>
-                               @Html.ActionLink("Explore our deals", "TravelDetail", "Home",new {@class= "gradient-button" })
-                            </div>
-                        </article>
-                        <!--//column-->
-                        <!--column-->
-                        <article class="one-fourth">
-                            <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/paris.jpg")" alt="" /></a></figure>
-                            <div class="details">
-                                <h3>Spend New Year‘s Eve in Paris</h3>
-                                @Html.ActionLink("More info", "TravelDetail", "Home", new { @class = "gradient-button" })
-                            </div>
-                        </article>
-                        <!--//column-->
-                        <!--column-->
-                        <article class="one-fourth">
-                            <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/img2.jpg")" alt="" /></a></figure>
-                            <div class="details">
-                                <h3>Skiing weekends in the Alpes</h3>
-                                @Html.ActionLink("Explore our deals", "TravelDetail", "Home", new { @class = "gradient-button" })
-                            </div>
-                        </article>
-                        <!--//column-->
-                        <!--column-->
-                        <article class="one-fourth">
-                            <figure><a href="#" title=""><img src="@Url.Content("~/images/uploads/thailand.jpg")" alt="" /></a></figure>
-                            <div class="details">
-                                <h3>Our weekly top offer: Thailand</h3>
-                                @Html.ActionLink("More info", "TravelDetail", "Home", new { @class = "gradient-button" })
-                            </div>
-                        </article>
-                        <!--//column-->
+                        @foreach (var item in Model)
+                        {
+                             <!--deal-->
+                            <article class="one-fourth">
+                                <figure><a href="@Url.Action("TravelDetail","Home",new {id=item.ID })" title=""><img style="width:100%" src="@Url.Content(@item.travel.images.First().source)" alt="" /></a></figure>
+                                <div class="details">
+                                    <h3>
+                                        @item.travel.Name
+                                        <span class="stars">
+                                            <i class="material-icons">&#xE838;</i>
+                                            <i class="material-icons">&#xE838;</i>
+                                            <i class="material-icons">&#xE838;</i>
+                                            <i class="material-icons">&#xE838;</i>
+                                        </span>
+                                    </h3>
+                                    <span class="address"><a href="#">@item.travel.StartFrom -> @item.travel.EndTo</a></span>
+                                    <span class="rating"> 8 /10</span>
+                                    <span class="price">Аялалын үнэ:  <em>@item.price ₮ </em> </span>
+                                    <span class="price">Хөтөч:  <em>@item.travel.guider.lastName @item.travel.guider.firstName </em> </span>
+                                    <div class="description">
+                                        <p>@item.detail <a href="@Url.Action("TravelDetail","Home",new {id=item.ID })">Дэлгэрэнгүй</a></p>
+                                    </div>
+                                    <a href="@Url.Action("TravelDetail","Home",new {id=item.ID })" title="Book now" class="gradient-button">Захиалах</a>
+                                </div>
+                            </article>
+                        <!--//deal-->
+                        }
                     </div>
                 </div>
                 <!--//latest offers-->

@@ -16,7 +16,7 @@
         <hr />
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.firstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Овог</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.firstName)
                 @Html.ValidationMessageFor(model => model.firstName)
@@ -24,7 +24,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.lastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Нэр</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.lastName)
                 @Html.ValidationMessageFor(model => model.lastName)
@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.workedYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Ажилсан жил</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.workedYear)
                 @Html.ValidationMessageFor(model => model.workedYear)
@@ -40,7 +40,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.img, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Зураг</label>
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.File, new { @type = "file" })
                 @Html.ValidationMessageFor(model => model.File)
@@ -56,7 +56,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Буцах", "Index")
 </div>
 
 @section Scripts {

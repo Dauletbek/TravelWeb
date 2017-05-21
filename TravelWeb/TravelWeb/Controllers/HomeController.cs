@@ -11,7 +11,7 @@ namespace TravelWeb.Controllers
         private TravelContext db = new TravelContext();
         public ActionResult Index()
         {
-            return View();
+            return View(db.Plans.ToList());
         }
 
         public ActionResult About()

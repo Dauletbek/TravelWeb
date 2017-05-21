@@ -38,12 +38,12 @@
             @Html.DisplayFor(modelItem => item.workedYear)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.img)
+            <img class="img-responsive" style="height:50%" src="@Url.Content(item.img)">
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Засах", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Дэлгэрэнгүй", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Устгах", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
