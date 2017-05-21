@@ -27,8 +27,15 @@ namespace TravelWeb.Controllers
 
             return View();
         }
-        public ActionResult Travels() {
-            return View(db.Plans.ToList());
+        public ActionResult Travels(int? id) {
+
+            if (id != null)
+            {
+                return View(db.Plans.Where(o => o.travel.TravelType.TravelTypeID == id).ToList());
+            }
+            else {
+                return View(db.Plans.ToList());
+            }
         }
 
         public ActionResult TravelDetail(int? id)
