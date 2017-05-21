@@ -89,123 +89,74 @@
                 <!--description-->
                 <section id="description" class="tab-content">
                     <article>
-                        <h2>General</h2>
+                        <h2>Үндсэн мэдээлэл</h2>
                         <div class="text-wrap">
-                            <p>The Best Ipsum hotel  features over 1,000 luxuriously appointed, individually styled rooms, suites and apartments, each containing unique works of art. Accommodation at the hotel includes air conditioning in all the rooms, private bathroom with heated mirrors, hair dryer, power shower, BT Openzone Wi-Fi, coffee and tea making facilities, complimentary toiletries, Egyptian linen, flat Screen LCD TV with free view, work desk, 24 hour room service.</p>
-                        </div>
+                            <strong>Аялалын төрөл: </strong> @Model.travel.TravelType.Name
+                            </div>
+                            <div class="text-wrap">
+                                <p>@Model.detail</p>
+                            </div>
 
-                        <h2>Check-in</h2>
-                        <div class="text-wrap">
-                            <p>From 15:00 hours </p>
-                        </div>
+                            <h2>Эхлэх</h2>
+                            <div class="text-wrap">
+                                <p>@Model.startDate.ToString("yyyy/MM/dd") </p>
+                            </div>
 
-                        <h2>Check-out</h2>
-                        <div class="text-wrap">
-                            <p>Untill 12:00 hours </p>
-                        </div>
+                            <h2>Дуусах</h2>
+                            <div class="text-wrap">
+                                <p>@Model.endDate.ToString("yyyy/MM/dd") </p>
+                            </div>
 
-                        <h2>Cancellation / Prepayment</h2>
-                        <div class="text-wrap">
-                            <p>Cancellation and prepayment policies vary according to room type. Please check the <a href="#">room conditions</a> when selecting your room. </p>
-                        </div>
-
-                        <h2>Children and extra beds</h2>
-                        <div class="text-wrap">
-                            <p><strong>Free!</strong> All children under 8 years stay free of charge when using existing beds.<strong>Free!</strong> All children under 2 years stay free of charge for children’s cots/cribs.All older children or adults are charged USD 40 per person per night for extra beds.The maximum number of extra beds/children’s cots permitted in a room is 1.Any type of extra bed or child’s cot/crib is upon request and needs to be confirmed by management.Supplements are not calculated automatically in the total costs and will have to be paid for separately when checking out.</p>
-                        </div>
-
-                        <h2>Pets</h2>
-                        <div class="text-wrap">
-                            <p>Pets are allowed. Charges may be applicable.</p>
-                        </div>
-
-                        <h2>Accepted credit cards</h2>
-                        <div class="text-wrap">
-                            <p>American Express, Visa, Euro/Mastercard, Diners ClubThe hotel reserves the right to pre-authorise credit cards prior to arrival.</p>
-                        </div>
-                    </article>
+                            @foreach (var day in Model.Days)
+                            {
+                                <h2>Өдөр @day.day</h2>
+                                <div class="text-wrap">
+                                    <p>@day.detail</p>
+                                </div>
+                            }
+                            <h2>Хөтөчийн мэдээлэл</h2>
+                            <div class="text-wrap">
+                                <img src="@Url.Content(Model.travel.guider.img)" style="width:100px">
+                                <p><strong>Овог нэр: </strong>@Model.travel.guider.firstName @Model.travel.guider.lastName</p>
+                                <p><strong>Ажлын туршлага: </strong> @Model.travel.guider.workedYear жил</p>
+                                
+                            </div>
+</article>
                 </section>
                 <!--//description-->
                 <!--reviews-->
                 <section id="reviews" class="tab-content">
-                    <article>
-                        <h2>Hotel Score and Score Breakdown</h2>
-                        <div class="score">
-                            <span class="achieved">8 </span>
-                            <span> / 10</span>
-                            <p class="info">Based on 782 reviews</p>
-                            <p class="disclaimer">Guest reviews are written by our customers <strong>after their stay</strong> at Hotel Best Ipsum.</p>
-                        </div>
-
-                        <dl class="chart">
-                            <dt>Clean</dt>
-                            <dd><span id="data-one" style="width:80%;">8</span></dd>
-                            <dt>Comfort</dt>
-                            <dd><span id="data-two" style="width:60%;">6</span></dd>
-                            <dt>Location</dt>
-                            <dd><span id="data-three" style="width:80%;">8</span></dd>
-                            <dt>Staff</dt>
-                            <dd><span id="data-four" style="width:100%;">10</span></dd>
-                            <dt>Services</dt>
-                            <dd><span id="data-five" style="width:70%;">7</span></dd>
-                            <dt>Value for money</dt>
-                            <dd><span id="data-six" style="width:90%;">9</span></dd>
-                        </dl>
-                    </article>
 
                     <article>
-                        <h2>Guest reviews</h2>
+                        <h2>Сэтгэгдэлүүд</h2>
                         <ul class="reviews">
+                            @foreach (var comment in Model.travel.comments)
+                            {
                             <!--review-->
                             <li>
                                 <figure class="left">
                                     <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
+                                    <address><span>@comment.user.firstName @comment.user.lastName</span><br />Хэрэглэгч<br />@comment.createdDate.ToString("yyyy-MM-dd")</address>
                                 </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
+                                <div class="rev pro"><p>@comment.detail</p></div>
                             </li>
                             <!--//review-->
-                            <!--review-->
+                            }
+@if (Request.IsAuthenticated)
+{
+                            <!--comment-->
                             <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span>Solo TravellerNorway22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
+                               
+@using (Html.BeginForm("Comment", "Home", FormMethod.Post))
+{
+    <input type="hidden" value="@Model.ID" name="travelPlanId">
+    <input type="hidden" value="@Model.TravelID" name="travelId">
+                                    <input class="col-md-12" type="text" name="comment" placeholder="Сэтгэгдэл бичих "/>
+                                    <input class="pull-right" style="margin-top:10px" type="submit" value="Оруулах">
+}
+                             </li>
+                            <!--//comment-->
+}
                         </ul>
                     </article>
                 </section>
@@ -218,11 +169,11 @@
                 <article class="hotel-details">
                     <h1>
                         @Model.travel.Name
-                    </h1>
+                    </h1><br/>
                     <span class="address">@Model.travel.StartFrom->@Model.travel.EndTo</span>
-                    <span class="rating"> 8 /10</span>
-                    <div class="description">
-                        <p>@Model.detail</p>
+                    
+                    <div class="description" style="text-align:center">
+                        <strong >@Model.travel.TravelType.Name</strong>
                     </div>
                 </article>
                 <!--//hotel details-->
