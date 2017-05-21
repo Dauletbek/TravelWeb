@@ -38,17 +38,39 @@
             <!--ribbon-->
             <div class="ribbon">
                 <nav>
+@if (Request.IsAuthenticated)
+{
                     <ul class="profile-nav">
-                        <li class="active"><a href="#" title="My Account">My Account</a></li>
-                        <li><a href="#" onclick="showfunc()" title="Login">Login</a></li>
-                        <li><a href="my_account.html" title="Settings">Settings</a></li>
+                        
+                            <li class="active"><a href="#" title="My Account">@HttpContext.Current.User.Identity.Name</a></li>
+                            <li><a href="#" onclick="showfunc()" title="Login"></a></li>
+                            <li><a href="my_account.html" title="Settings"></a></li>
+                        
                     </ul>
                     <ul class="lang-nav">
-                        <li class="active"><a href="#" onclick="showfunc()" title="Login">Login</a></li>
+                        <li class="active"><a href="@Url.Action("LogOff","Home")"  title="Login">Гарах</a></li>
                     </ul>
                     <ul class="currency-nav">
-                        <li class="active"><a href="my_account.html" title="Settings">Settings</a></li>
+                        <li class="active"><a href="my_account.html" title="Settings">Тохиргоо</a></li>
                     </ul>
+}
+else
+{
+    <ul class="profile-nav">
+
+        <li class="active"><a href="#" title="My Account">Сайн уу</a></li>
+
+        <li><a href="#" onclick="showfunc()" title="Login"></a></li>
+        <li><a href="my_account.html" title="Settings">Settings</a></li>
+
+    </ul>
+                    <ul class="lang-nav">
+                        <li class="active"><a href="#" onclick="showfunc()" title="Login">Нэвтрэх</a></li>
+                    </ul>
+                    <ul class="currency-nav">
+                        <li class="active"><a href="my_account.html" title="Settings">Тохиргоо</a></li>
+                    </ul>
+}
                 </nav>
             </div>
             <!--//ribbon-->
@@ -229,7 +251,8 @@
         <div class="lb-wrap">
             <a href="#" class="close">x</a>
             <div class="lb-content">
-                <form class="row">
+@using (Html.BeginForm("Login", "Home", new { @class="row"}))
+{
                     <h3>Нэвтрэх</h3>
                     <div class="f-item full-width">
                         <label for="email">Мэйл хаяг</label>
@@ -239,10 +262,14 @@
                         <label for="password">Нууц үг</label>
                         <input type="password" id="password" name="password" />
                     </div>
+                    <div class="f-item checkbox full-width">
+                        <input type="checkbox" id="remember_me" name="remember_me" />
+                        <label for="remember_me">Намайг сана</label>
+                    </div>
                     <div class="f-item full-width">
                         <input type="submit" id="login" name="login" value="Нэвтрэх" class="gradient-button" />
                     </div>
-                </form>
+}
             </div>
         </div>
     </div>

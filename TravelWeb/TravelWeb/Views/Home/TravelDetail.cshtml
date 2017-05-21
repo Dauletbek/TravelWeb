@@ -128,58 +128,35 @@
                 <section id="reviews" class="tab-content">
 
                     <article>
-                        <h2>Guest reviews</h2>
+                        <h2>Сэтгэгдэлүүд</h2>
                         <ul class="reviews">
+                            @foreach (var comment in Model.travel.comments)
+                            {
                             <!--review-->
                             <li>
                                 <figure class="left">
                                     <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
+                                    <address><span>@comment.user.firstName @comment.user.lastName</span><br />Хэрэглэгч<br />@comment.createdDate.ToString("yyyy-MM-dd")</address>
                                 </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
+                                <div class="rev pro"><p>@comment.detail</p></div>
                             </li>
                             <!--//review-->
-                            <!--review-->
+                            }
+@if (Request.IsAuthenticated)
+{
+                            <!--comment-->
                             <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span>Solo TravellerNorway22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
-                            <!--review-->
-                            <li>
-                                <figure class="left">
-                                    <img src="@Url.Content("~/images/uploads/avatar.jpg")" alt="avatar" />
-                                    <address><span>Anonymous</span><br />Solo TravellerNorway<br />22/06/2016</address>
-                                </figure>
-                                <div class="rev pro"><p>It was a warm friendly hotel. Very easy access to shops and underground stations. Staff very welcoming.</p></div>
-                                <div class="rev con"><p>noisy neigbourghs spoilt the rather calm environment</p></div>
-                            </li>
-                            <!--//review-->
+                               
+@using (Html.BeginForm("Comment", "Home", FormMethod.Post))
+{
+    <input type="hidden" value="@Model.ID" name="travelPlanId">
+    <input type="hidden" value="@Model.TravelID" name="travelId">
+                                    <input class="col-md-12" type="text" name="comment" placeholder="Сэтгэгдэл бичих "/>
+                                    <input class="pull-right" style="margin-top:10px" type="submit" value="Оруулах">
+}
+                             </li>
+                            <!--//comment-->
+}
                         </ul>
                     </article>
                 </section>
